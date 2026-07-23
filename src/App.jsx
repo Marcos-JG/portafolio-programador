@@ -1,13 +1,13 @@
-import Header from './components/Header'
+import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import AppRoutes from './routes'
+import Home from './pages/Home'
 
 export default function App() {
   return (
-    <div className="mx-auto flex min-h-svh w-[1126px] max-w-full flex-col border-x border-gray-200 box-border dark:border-gray-700">
-      <Header />
-      <main className="flex flex-1 flex-col">
-        <AppRoutes />
+    <div className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+      <Navbar />
+      <main>
+        <Home />
       </main>
       <Footer />
     </div>
