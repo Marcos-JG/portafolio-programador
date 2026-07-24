@@ -12,7 +12,7 @@ export const profile = {
     'Contribuir a proyectos de código abierto y comunidades tech.',
     'Especializarme en experiencia de usuario y rendimiento web.',
   ],
-  cvUrl: '/cv.pdf',
+  cvUrl: '/assets/MarcosGarciaCv.pdf',
 }
 
 export const contactInfo = {
