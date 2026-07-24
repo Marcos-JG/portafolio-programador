@@ -3,10 +3,10 @@ import SectionTitle from './SectionTitle'
 import ScrollReveal from './ScrollReveal'
 
 const categories = [
-  { key: 'frontend', label: 'Frontend' },
-  { key: 'backend', label: 'Backend' },
-  { key: 'database', label: 'Bases de Datos' },
-  { key: 'tools', label: 'Herramientas' },
+  { key: 'frontend', label: 'Frontend', percentage: 95 },
+  { key: 'backend', label: 'Backend', percentage: 90 },
+  { key: 'database', label: 'Bases de Datos', percentage: 90 },
+  { key: 'tools', label: 'Herramientas', percentage: 90 },
 ]
 
 export default function Technologies() {
@@ -16,12 +16,23 @@ export default function Technologies() {
         <SectionTitle title="Tecnologías" subtitle="Stack con el que trabajo habitualmente" />
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map(({ key, label }) => (
+          {categories.map(({ key, label, percentage }) => (
             <ScrollReveal key={key}>
               <div className="rounded-2xl border border-neutral-200/60 bg-white p-6 transition-shadow hover:shadow-md dark:border-neutral-800/60 dark:bg-neutral-950">
-                <h3 className="mb-5 text-xs font-semibold tracking-widest text-indigo-500 dark:text-indigo-400">
-                  {label}
-                </h3>
+                <div className="mb-4 flex items-center justify-between">
+                  <h3 className="text-xs font-semibold tracking-widest text-indigo-500 dark:text-indigo-400">
+                    {label.toUpperCase()}
+                  </h3>
+                  <span className="text-xs font-bold text-neutral-500 dark:text-neutral-400">{percentage}%</span>
+                </div>
+                
+                <div className="mb-6 h-1.5 w-full overflow-hidden rounded-full bg-neutral-100 dark:bg-neutral-800">
+                  <div
+                    className="h-full rounded-full bg-indigo-500 transition-all duration-1000 dark:bg-indigo-400"
+                    style={{ width: `${percentage}%` }}
+                  />
+                </div>
+
                 <div className="flex flex-wrap gap-2">
                   {technologies[key].map((tech) => (
                     <span

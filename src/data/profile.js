@@ -7,6 +7,11 @@ export const profile = {
     'Soy un desarrollador Full Stack Junior apasionado por la tecnología y el diseño de interfaces. Me especializo en construir aplicaciones web escalables utilizando React, Node.js, Express, MongoDB y Tailwind CSS, siempre aplicando buenas prácticas de código limpio y rendimiento.',
     'Mi enfoque combina el desarrollo técnico con una sensibilidad por el diseño minimalista y funcional, donde a veces menos es más, pero cada detalle importa.',
   ],
+  generalData: {
+    age: 18,
+    experienceYears: 3,
+    education: '3er año de Perito Técnico en Informática'
+  },
   objectives: [
     'Seguir creciendo como desarrollador full stack, profundizando en arquitecturas de software e Inteligencia Artificial.',
     'Contribuir a proyectos de código abierto y comunidades tech.',
