@@ -30,7 +30,7 @@ export default function Skills() {
                 <h3 className="mb-6 text-xs font-semibold tracking-widest text-indigo-500 dark:text-indigo-400">
                   {group.category.toUpperCase()}
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   {group.items.map((item) => (
                     <div
                       key={item.name}
