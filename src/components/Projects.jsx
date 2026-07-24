@@ -1,8 +1,12 @@
+import { useState } from 'react'
 import { projects } from '../data/projects'
 import SectionTitle from './SectionTitle'
 import ScrollReveal from './ScrollReveal'
+import ProjectModal from './ProjectModal'
 
 export default function Projects() {
+  const [selected, setSelected] = useState(null)
+
   return (
     <section id="projects" className="px-6 py-24">
       <div className="mx-auto max-w-6xl">
@@ -11,21 +15,28 @@ export default function Projects() {
         <div className="grid gap-8 md:grid-cols-2">
           {projects.map((project) => (
             <ScrollReveal key={project.id}>
-              <div className="group overflow-hidden rounded-2xl border border-neutral-200/60 bg-white transition-all hover:shadow-lg dark:border-neutral-800/60 dark:bg-neutral-950">
+              <div
+                className="group cursor-pointer overflow-hidden rounded-2xl border border-neutral-200/60 bg-white transition-all hover:shadow-lg dark:border-neutral-800/60 dark:bg-neutral-950"
+                onClick={() => setSelected(project)}
+              >
                 <div
-                  className={`flex h-48 items-center justify-center bg-gradient-to-br ${project.gradient}`}
+                  className={`flex h-48 items-center justify-center bg-gradient-to-br ${project.image ? '' : project.gradient}`}
                 >
-                  <div className="text-center">
-                    <svg className="mx-auto h-10 w-10 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.41a2.25 2.25 0 013.182 0l2.909 2.91m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                    </svg>
-                  </div>
+                  {project.image ? (
+                    <img src={project.image} alt={project.title} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                  ) : (
+                    <div className="text-center">
+                      <svg className="mx-auto h-10 w-10 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.41a2.25 2.25 0 013.182 0l2.909 2.91m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                      </svg>
+                    </div>
+                  )}
                 </div>
                 <div className="p-6">
                   <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">
                     {project.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
+                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
                     {project.description}
                   </p>
                   <div className="mt-4 flex flex-wrap gap-1.5">
@@ -43,6 +54,7 @@ export default function Projects() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="inline-flex items-center gap-1.5 rounded-lg border border-neutral-300 px-4 py-2 text-xs font-medium text-neutral-700 transition-all hover:border-neutral-400 hover:bg-neutral-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:bg-neutral-800"
                     >
                       <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -57,6 +69,10 @@ export default function Projects() {
           ))}
         </div>
       </div>
+
+      {selected && (
+        <ProjectModal project={selected} onClose={() => setSelected(null)} />
+      )}
     </section>
   )
 }

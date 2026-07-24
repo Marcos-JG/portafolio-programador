@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { profile } from '../data/profile'
 import ScrollReveal from './ScrollReveal'
 
 export default function Hero() {
+  const [imgError, setImgError] = useState(false)
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 
   return (
@@ -13,6 +15,20 @@ export default function Hero() {
 
       <ScrollReveal>
         <div className="relative max-w-2xl text-center">
+          <div className="mx-auto mb-8 h-32 w-32 overflow-hidden rounded-full border-4 border-neutral-200 shadow-lg dark:border-neutral-700 sm:h-40 sm:w-40">
+            {imgError ? (
+              <div className="flex h-full w-full items-center justify-center bg-neutral-100 text-4xl font-semibold text-neutral-400 dark:bg-neutral-800 dark:text-neutral-500">
+                {profile.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+              </div>
+            ) : (
+              <img
+                src="/assets/Me.png"
+                alt={profile.name}
+                className="h-full w-full object-cover"
+                onError={() => setImgError(true)}
+              />
+            )}
+          </div>
           <p className="mb-4 text-sm font-medium tracking-wide text-indigo-500 dark:text-indigo-400">
             {profile.role.toUpperCase()}
           </p>
